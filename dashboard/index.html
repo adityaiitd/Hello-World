@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive dashboard: data center power & energization companies, demand, and deals (US & global)." />
+  <title>Data Center Power · Energization Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">⚡</span>
+      <div>
+        <h1>Data Center Power &amp; Energization</h1>
+        <p class="subtitle">Interactive landscape · US &amp; global · as-of May 2026</p>
+      </div>
+    </div>
+    <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+  </header>
+
+  <nav id="nav" class="tabs">
+    <button class="tab active" data-view="overview">Overview</button>
+    <button class="tab" data-view="demand">Demand</button>
+    <button class="tab" data-view="companies">Companies</button>
+    <button class="tab" data-view="deals">Deals</button>
+    <button class="tab" data-view="tech">Technologies</button>
+    <button class="tab" data-view="regions">Regions</button>
+    <button class="tab" data-view="bottlenecks">Bottlenecks</button>
+  </nav>
+
+  <main>
+    <!-- OVERVIEW -->
+    <section id="overview" class="view active">
+      <div id="kpis" class="kpi-grid"></div>
+      <div class="card-row">
+        <div class="card chart-card">
+          <h3>Global data center electricity (TWh)</h3>
+          <div class="chart-wrap"><canvas id="overviewDemandChart"></canvas></div>
+        </div>
+        <div class="card chart-card">
+          <h3>Companies by value-chain segment</h3>
+          <div class="chart-wrap"><canvas id="segmentChart"></canvas></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>The thesis</h3>
+        <p class="prose">AI is driving data center electricity demand to roughly <b>double to ~945 TWh by 2030</b> (~200 GW of capacity). The binding constraint is no longer capital or chips but <b>power and time-to-power</b>. Multi-year grid interconnection queues and a 3–5 year gas-turbine backlog are pushing the industry toward a <b>parallel, behind-the-meter energy system</b> — fuel cells and engines for immediate energization; aeroderivatives and solar-plus-storage for the medium term; heavy-duty gas and nuclear (restarts → SMRs ~2030+) for long-horizon firm power. Winners <b>control a scarce link</b> and <b>compress time-to-power</b>. Use the tabs to explore the data.</p>
+      </div>
+    </section>
+
+    <!-- DEMAND -->
+    <section id="demand" class="view">
+      <div class="card-row">
+        <div class="card chart-card wide">
+          <div class="card-head">
+            <h3>Demand scenarios — global DC electricity (TWh)</h3>
+            <div id="scenarioToggles" class="chip-row small"></div>
+          </div>
+          <div class="chart-wrap tall"><canvas id="scenarioChart"></canvas></div>
+        </div>
+      </div>
+      <div class="card-row">
+        <div class="card chart-card">
+          <h3>Installed capacity (GW)</h3>
+          <div class="chart-wrap"><canvas id="capacityChart"></canvas></div>
+        </div>
+        <div class="card chart-card">
+          <h3>AI share of workloads (%)</h3>
+          <div class="chart-wrap"><canvas id="aiShareChart"></canvas></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Key facts</h3>
+        <ul id="demandNotes" class="facts"></ul>
+      </div>
+    </section>
+
+    <!-- COMPANIES -->
+    <section id="companies" class="view">
+      <div class="filters">
+        <input id="companySearch" class="search" type="search" placeholder="Search companies, tech, deals…" />
+        <div id="segmentFilters" class="chip-row"></div>
+        <div id="tierFilters" class="chip-row"></div>
+      </div>
+      <p id="companyCount" class="count"></p>
+      <div id="companyGrid" class="company-grid"></div>
+    </section>
+
+    <!-- DEALS -->
+    <section id="deals" class="view">
+      <div class="filters">
+        <input id="dealSearch" class="search" type="search" placeholder="Search deals by buyer, supplier, tech…" />
+        <div id="dealModelFilters" class="chip-row"></div>
+      </div>
+      <div class="card chart-card">
+        <h3>Capacity by technology in tracked deals (MW)</h3>
+        <div class="chart-wrap"><canvas id="dealTechChart"></canvas></div>
+      </div>
+      <div class="table-wrap">
+        <table id="dealTable" class="data-table">
+          <thead>
+            <tr>
+              <th data-sort="buyer">Buyer</th>
+              <th data-sort="supplier">Supplier</th>
+              <th data-sort="tech">Technology</th>
+              <th data-sort="mw" class="num">MW</th>
+              <th data-sort="model">Model</th>
+              <th data-sort="year">First power</th>
+              <th data-sort="status">Status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGIES -->
+    <section id="tech" class="view">
+      <p class="prose">Sorted by <b>time-to-power</b> tier — the most important variable in the AI build-out.</p>
+      <div id="techTiers"></div>
+    </section>
+
+    <!-- REGIONS -->
+    <section id="regions" class="view">
+      <div id="regionGrid" class="region-grid"></div>
+    </section>
+
+    <!-- BOTTLENECKS -->
+    <section id="bottlenecks" class="view">
+      <p class="prose">Where value and risk concentrate. Whoever controls a scarce link holds pricing power.</p>
+      <div id="bottleneckList"></div>
+    </section>
+  </main>
+
+  <!-- Company detail modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="Close">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <p>Figures are point-in-time estimates (IEA, JLL, company disclosures, industry/press). Verify against primary sources before decisions. · See <code>data-center-power-energization-guide.md</code> for the full written deep-dive.</p>
+  </footer>
+</body>
+</html>

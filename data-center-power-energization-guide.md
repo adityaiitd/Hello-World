@@ -15,6 +15,8 @@ The guide is organized in two layers:
 
 If you are running this as a project, follow the **8-phase workplan in Section 12** and populate the **templates in Section 13**.
 
+> **Interactive companion.** An interactive, mobile- and desktop-friendly dashboard version of this data lives in [`dashboard/index.html`](dashboard/index.html). Open it in a browser (or host it via GitHub Pages) to filter the 40+ companies, sort the deal tracker, toggle demand scenarios, and explore the technology stack by time-to-power. The underlying data is in [`dashboard/data.js`](dashboard/data.js) and is easy to extend.
+
 ---
 
 ## 1. Scope & Definitions
