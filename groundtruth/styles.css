@@ -272,3 +272,14 @@ main { max-width: 1180px; margin: 0 auto; padding: 18px 14px 40px; }
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
   .kpi .v { font-size: 1.15rem; }
 }
+
+
+/* Private market extensions */
+.priority-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.detail.priority { border-left: 4px solid var(--accent); }
+.private-card { cursor: default; }
+.private-card:hover { transform: none; border-color: var(--accent-2); }
+.private-table { min-width: 980px; }
+.private-table td { vertical-align: top; font-size: .8rem; }
+.private-table .conf-badge { margin-left: 0; }
+#spendChart { max-height: 340px; }

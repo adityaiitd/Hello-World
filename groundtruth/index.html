@@ -34,6 +34,9 @@
     <button class="tab" data-view="playbooks">Founder Playbooks</button>
     <button class="tab" data-view="traction">Fastest Traction</button>
     <button class="tab" data-view="money">Buyers &amp; Money</button>
+    <button class="tab" data-view="disastermap">Disaster Spend</button>
+    <button class="tab" data-view="privates">Private Markets</button>
+    <button class="tab" data-view="privategtm">Private GTM</button>
     <button class="tab" data-view="ladder">Expansion Ladder</button>
     <button class="tab" data-view="risks">Risks</button>
     <button class="tab" data-view="sources">Sources</button>
@@ -245,6 +248,74 @@
       <div class="card">
         <h3>Money flow</h3>
         <div id="moneyFlow" class="flow"></div>
+      </div>
+    </section>
+
+
+
+    <!-- DISASTER SPEND MAP -->
+    <section id="disastermap" class="view">
+      <div class="card accent-card">
+        <h3>The overall disaster / physical-disruption spend map</h3>
+        <p class="prose" id="disasterThesis"></p>
+      </div>
+      <div class="card-row">
+        <div class="card chart-card">
+          <h3>Spend anchors (selected annual / event figures)</h3>
+          <div class="chart-wrap"><canvas id="spendChart"></canvas></div>
+        </div>
+        <div class="card">
+          <h3>Who pays</h3>
+          <div id="payerList"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Hazards, cost pools, and GroundTruth opportunity</h3>
+        <div class="table-wrap">
+          <table class="data-table private-table" id="hazardTable">
+            <thead><tr><th>Hazard</th><th>Annual / event cost anchor</th><th>Payers</th><th>Opportunity</th><th>Conf.</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVATE MARKETS -->
+    <section id="privates" class="view">
+      <div class="card accent-card">
+        <h3>Private markets are a parallel wedge, not a distraction</h3>
+        <p class="prose" id="privateThesis"></p>
+      </div>
+      <div class="card">
+        <h3>Priority order</h3>
+        <div id="privatePriority" class="priority-grid"></div>
+      </div>
+      <div class="filters">
+        <input id="privateSearch" class="search" type="search" placeholder="Search private markets, buyers, pains, hooks…" />
+      </div>
+      <p id="privateCount" class="count"></p>
+      <div id="privateGrid" class="company-grid"></div>
+    </section>
+
+    <!-- PRIVATE GTM -->
+    <section id="privategtm" class="view">
+      <div class="card accent-card">
+        <h3>Private-market go-to-market</h3>
+        <p class="prose" id="privateGtmWedge"></p>
+      </div>
+      <div class="card-row">
+        <div class="card">
+          <h3>Private journey — before</h3>
+          <ol id="privateBefore" class="steps"></ol>
+        </div>
+        <div class="card">
+          <h3>Private journey — after</h3>
+          <ol id="privateAfter" class="steps"></ol>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Four GTM motions</h3>
+        <div id="privateMotions" class="reason-grid"></div>
       </div>
     </section>
 

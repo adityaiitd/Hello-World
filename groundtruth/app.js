@@ -34,6 +34,9 @@
     renderPlaybooks();
     renderTraction();
     renderMoney();
+    renderDisasterMap();
+    renderPrivateMarkets();
+    renderPrivateGtm();
     renderLadder();
     renderRisks();
     renderSources();
@@ -83,6 +86,7 @@
     if (view === "market") buildEntitiesChart();
     else if (view === "revenue") buildMixChart();
     else if (view === "hyper") buildY1Chart();
+    else if (view === "disastermap") buildSpendChart();
     Object.values(charts).forEach((c) => { if (c) c.resize(); });
   }
 
@@ -344,6 +348,85 @@
         <span class="node">Compliance reports → PUC</span>
       </div>
       <div class="row"><span class="arrow">channel:</span><span class="node src">Statewide assoc / G&amp;T / mutual aid (low-CAC)</span></div>`;
+  }
+
+
+
+  /* ---------------- Disaster spend map + private markets ---------------- */
+  function renderDisasterMap() {
+    const th = document.getElementById("disasterThesis");
+    if (!th) return;
+    th.innerHTML = esc(DISASTER_MARKET_MAP.thesis);
+    document.querySelector("#hazardTable tbody").innerHTML = DISASTER_MARKET_MAP.hazards.map((h) => `
+      <tr>
+        <td><b>${esc(h.hazard)}</b></td>
+        <td>${esc(h.annual)}</td>
+        <td>${esc(h.payers)}</td>
+        <td>${esc(h.opportunity)}</td>
+        <td>${confBadge(h.confidence)}</td>
+      </tr>`).join("");
+    document.getElementById("payerList").innerHTML = DISASTER_MARKET_MAP.payers.map((p) => `
+      <div class="detail"><h4>${esc(p.payer)}</h4><p>${esc(p.paysFor)}</p><p class="tag">Owner: ${esc(p.budgetOwner)}</p><p class="tag">Trigger: ${esc(p.buyTrigger)}</p></div>`).join("");
+  }
+
+  function spendValue(v) {
+    const m = String(v).match(/\$([0-9.]+)/);
+    if (!m) return 0;
+    let n = +m[1];
+    if (String(v).includes("T")) n *= 1000;
+    return n;
+  }
+  function buildSpendChart() {
+    if (typeof Chart === "undefined" || charts.spend) return;
+    const rows = DISASTER_MARKET_MAP.spendAnchors;
+    charts.spend = new Chart(document.getElementById("spendChart"), {
+      type: "bar",
+      data: { labels: rows.map((r) => r.label), datasets: [{ label: "$B scale", data: rows.map((r) => spendValue(r.value)), backgroundColor: SERIES }] },
+      options: { responsive: true, maintainAspectRatio: false, animation: false, indexAxis: "y",
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${rows[c.dataIndex].value} — ${rows[c.dataIndex].note}` } } },
+        scales: { x: { grid: { color: PALETTE.grid }, beginAtZero: true, ticks: { callback: (v) => "$" + v + "B" } }, y: { grid: { color: PALETTE.grid }, ticks: { font: { size: 10 } } } } },
+    });
+  }
+
+  const privateState = { search: "" };
+  function renderPrivateMarkets() {
+    const th = document.getElementById("privateThesis");
+    if (!th) return;
+    th.innerHTML = esc(PRIVATE_MARKETS.thesis);
+    document.getElementById("privatePriority").innerHTML = PRIVATE_MARKETS.priority.map((p) => `
+      <div class="detail priority"><span class="tag">#${p.rank}</span><h4>${esc(p.target)}</h4><p>${esc(p.reason)}</p></div>`).join("");
+    document.getElementById("privateSearch").addEventListener("input", (e) => { privateState.search = e.target.value.toLowerCase(); drawPrivateMarkets(); });
+    drawPrivateMarkets();
+  }
+  function filterPrivateMarkets() {
+    return PRIVATE_MARKETS.segments.filter((s) => {
+      if (!privateState.search) return true;
+      const hay = (s.name + " " + s.buyers + " " + s.pain + " " + s.hook + " " + s.whyFast + " " + s.acv).toLowerCase();
+      return hay.includes(privateState.search);
+    });
+  }
+  function drawPrivateMarkets() {
+    const list = filterPrivateMarkets();
+    document.getElementById("privateCount").textContent = `${list.length} of ${PRIVATE_MARKETS.segments.length} private segments`;
+    document.getElementById("privateGrid").innerHTML = list.map((s) => `
+      <div class="company private-card">
+        <div class="c-name">${esc(s.name)}</div>
+        <div class="badges"><span class="badge layer">${esc(s.confidence)}</span><span class="badge stage">${esc(s.acv)}</span></div>
+        <div class="c-metric"><b>Buyer:</b> ${esc(s.buyers)}</div>
+        <div class="c-metric"><b>Pain:</b> ${esc(s.pain)}</div>
+        <div class="c-metric"><b>Hook:</b> ${esc(s.hook)}</div>
+        <div class="more">Why it can move: ${esc(s.whyFast)}</div>
+      </div>`).join("");
+  }
+
+  function renderPrivateGtm() {
+    const wedge = document.getElementById("privateGtmWedge");
+    if (!wedge) return;
+    wedge.innerHTML = esc(PRIVATE_GTM.wedge);
+    document.getElementById("privateBefore").innerHTML = PRIVATE_GTM.privateJourney.before.map((s) => `<li>${esc(s)}</li>`).join("");
+    document.getElementById("privateAfter").innerHTML = PRIVATE_GTM.privateJourney.after.map((s) => `<li>${esc(s)}</li>`).join("");
+    document.getElementById("privateMotions").innerHTML = PRIVATE_GTM.motions.map((m) => `
+      <div class="reason"><h4>${esc(m.motion)}</h4><p>${esc(m.why)}</p><ul>${m.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ul></div>`).join("");
   }
 
   /* ---------------- Ladder ---------------- */
