@@ -283,3 +283,17 @@ main { max-width: 1180px; margin: 0 auto; padding: 18px 14px 40px; }
 .private-table td { vertical-align: top; font-size: .8rem; }
 .private-table .conf-badge { margin-left: 0; }
 #spendChart { max-height: 340px; }
+
+
+/* Private ICP deep dive */
+.icp-card { border-left: 4px solid var(--accent-2); }
+.icp-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.icp-rank { color: var(--accent); font-weight: 800; margin-right: 4px; }
+.icp-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; margin-top: 10px; }
+.icp-col .icp-label, .icp-jcol .icp-label { font-size: .7rem; text-transform: uppercase; letter-spacing: .5px; color: var(--accent-2); margin: 12px 0 6px; font-weight: 800; }
+.icp-col .icp-label:first-child { margin-top: 0; }
+.icp-journey { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+.icp-jcol.before { border-left: 3px solid var(--crit); padding-left: 12px; }
+.icp-jcol.after { border-left: 3px solid var(--accent); padding-left: 12px; }
+.icp-sources { margin-top: 12px; display: grid; gap: 6px; }
+@media (max-width: 860px) { .icp-grid, .icp-journey { grid-template-columns: 1fr; } }

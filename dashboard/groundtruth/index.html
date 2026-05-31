@@ -37,6 +37,7 @@
     <button class="tab" data-view="disastermap">Disaster Spend</button>
     <button class="tab" data-view="privates">Private Markets</button>
     <button class="tab" data-view="privategtm">Private GTM</button>
+    <button class="tab" data-view="icp">Private ICP Deep Dive</button>
     <button class="tab" data-view="ladder">Expansion Ladder</button>
     <button class="tab" data-view="risks">Risks</button>
     <button class="tab" data-view="sources">Sources</button>
@@ -317,6 +318,25 @@
         <h3>Four GTM motions</h3>
         <div id="privateMotions" class="reason-grid"></div>
       </div>
+    </section>
+
+
+
+    <!-- PRIVATE ICP DEEP DIVE -->
+    <section id="icp" class="view">
+      <div class="card accent-card">
+        <h3>Private ICP deep dive — who, what we sell, market size, journey</h3>
+        <p class="prose" id="icpIntro"></p>
+      </div>
+      <div class="card">
+        <h3>Where to start: two parallel lanes</h3>
+        <div id="icpStart" class="priority-grid"></div>
+      </div>
+      <div class="filters">
+        <input id="icpSearch" class="search" type="search" placeholder="Search ICPs, customers, what we sell, pricing…" />
+      </div>
+      <p id="icpCount" class="count"></p>
+      <div id="icpList"></div>
     </section>
 
     <!-- LADDER -->

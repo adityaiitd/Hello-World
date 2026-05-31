@@ -487,6 +487,139 @@ const PRIVATE_GTM = {
   },
 };
 
+
+/* --------------------------------------------------------------------------
+ * Private ICP deep dive — who, what we sell, market size, pricing, journey
+ * ------------------------------------------------------------------------ */
+const PRIVATE_ICP = {
+  intro: "Six private ICPs, ranked by speed-to-revenue. The product surface is the same everywhere: guided capture -> AI damage/condition understanding -> evidence packet -> payout/dispatch. What changes per ICP is the customer, the document that gets them paid, the pricing unit, and the integration. Start with two lanes in parallel: (1) restoration contractors + claims networks for fastest weekly usage and per-claim revenue; (2) renewable energy owners for high-dollar, drone-native, catastrophe-driven contracts with a strong insurance/finance angle.",
+  startHere: [
+    { lane: "Lane 1 — Restoration contractors + claims networks", why: "Fastest adoption, immediate ROI, per-claim usage, private budget. They have pain every week, not only after declared disasters." },
+    { lane: "Lane 2 — Renewable energy owners", why: "Higher ACV, drone-native, catastrophic hail/wind losses, strong insurance/finance angle. Inspection workflows are already accepted." },
+  ],
+  icps: [
+    {
+      rank: 1,
+      name: "Restoration contractors",
+      speed: "Fastest private market",
+      customers: ["BELFOR", "First Onsite", "SERVPRO franchise groups", "Paul Davis / FirstService", "BluSky", "ATI Restoration", "Cotton Holdings", "PuroClean", "Regional water/fire/storm restoration firms"],
+      whyBuy: "They do the work first, then fight to get paid. Every missing photo, bad scope, weak moisture log, or unlabeled room photo can reduce payout. First Onsite explicitly positions around large-loss restoration, documentation, insurer alignment and faster decisions across 110+ locations and 2,600+ professionals.",
+      sell: ["Guided jobsite capture", "AI photo labeling by room / damage type / phase", "Moisture logs / drying progress", "Before / during / after repair proof", "Carrier-ready claim packet", "Xactimate / Symbility / PDF export", "Invoice-defense dashboard"],
+      pricing: ["$500-$2,500 per large-loss claim packet", "$50-$200 per daily jobsite documentation run", "1%-3% invoice-defense / supplement automation fee (where legally clean)", "$20k-$150k annual platform fee per regional operator"],
+      market: "US damage restoration is ~$7.1B (narrow, IBISWorld) up to ~$85B+ on broader property-restoration/rebuild definitions; ~60,000 firms; PE-driven consolidation from ~15k toward <10k firms. Fragmented, weekly pain, ideal for channel + roll-up.",
+      journey: {
+        before: ["Crews mitigate first; documentation is an afterthought.", "Techs shoot unlabeled phone photos across many rooms and days.", "Moisture/drying logs live on paper or scattered apps.", "Estimator rebuilds the scope days later from memory and messy photos.", "Carrier kicks back the claim for missing/again-unlabeled evidence.", "Supplements and invoice defense eat margin and weeks of A/R."],
+        after: ["App gives the tech a guided capture checklist per room/phase.", "AI auto-labels each photo by room, damage type and phase as it is taken.", "Moisture readings and drying curves are captured and trended automatically.", "Before/during/after proof is assembled into a carrier-ready packet.", "Packet exports straight to Xactimate/Symbility/PDF with line-item support.", "Invoice-defense dashboard flags missing evidence before submission, protecting payout."],
+      },
+      comp: "First Onsite (110+ locations, 2,600+ pros, BOLT platform) shows the buyer already values documentation and insurer alignment.",
+      sources: [
+        { label: "First Onsite — large-loss restoration (110+ locations, 2,600+ pros)", url: "https://firstonsite.com/service/large-complex-loss/" },
+        { label: "IBISWorld — US damage restoration services market", url: "https://www.ibisworld.com/united-states/industry/damage-restoration-services/6278/" },
+      ],
+      confidence: "high",
+    },
+    {
+      rank: 2,
+      name: "TPAs, adjusters & claims networks",
+      speed: "Larger but more competitive",
+      customers: ["Sedgwick", "Crawford", "Pilot Catastrophe", "Alacrity", "Verisk ecosystem partners", "Independent adjuster networks", "Public adjuster firms"],
+      whyBuy: "Claim cycle time and field labor are expensive. Hover reports claims take ~22 days to settle, rising to ~34 days after catastrophes, and it integrated deeper into Verisk's Xactimate to streamline property claims. Do not start by replacing Xactimate; start by feeding better evidence into it.",
+      sell: ["FNOL photo intake", "Guided inspection checklist", "Damage classification", "Material identification", "Estimate draft", "Fraud / inconsistency flags", "Adjuster review queue", "Claim-file export"],
+      pricing: ["Per-claim intake/triage fee", "Per-inspection guided-capture fee", "Enterprise platform + API to claims systems", "Risk/fraud analytics subscription"],
+      market: "US P&C claims run into the hundreds of billions paid annually; loss-adjustment expense is a large, dedicated cost pool. Sedgwick and Crawford handle millions of claims; the wedge is reducing cycle time and leakage, not replacing the estimating system of record.",
+      journey: {
+        before: ["FNOL arrives with sparse or inconsistent photos.", "Adjuster schedules a field or virtual inspection days out.", "Damage classification and material ID are manual and variable by adjuster.", "Estimates bounce between adjuster, contractor and carrier.", "Cycle time stretches to ~22 days (or ~34 after a CAT) and leakage/fraud slips through."],
+        after: ["Policyholder/field rep captures a guided, carrier-compliant photo set at FNOL.", "AI classifies damage, identifies materials and drafts an estimate.", "Inconsistencies and potential fraud are flagged for review.", "A clean claim file feeds directly into Xactimate/XactAnalysis.", "Adjuster reviews a prioritized queue; cycle time and leakage drop."],
+      },
+      comp: "Hover's Verisk/Xactimate integration proves carriers will buy better evidence feeding the existing estimating workflow.",
+      sources: [
+        { label: "Verisk — Hover expands in Xactimate (claims ~22 days; ~34 after CAT)", url: "https://www.verisk.com/company/newsroom/hover-expands-offerings-within-verisks-xactimate-to-advance-property-claims-efficiency/" },
+      ],
+      confidence: "moderate-high",
+    },
+    {
+      rank: 3,
+      name: "Renewable energy owners (solar & wind)",
+      speed: "High-dollar, drone-native",
+      customers: ["Solar & wind asset owners", "IPPs", "Renewable O&M firms", "Insurers/brokers covering solar/wind", "Tracker/inverter/panel warranty teams"],
+      whyBuy: "Hail, wind, fire, flood and component failure create enormous losses, and drone inspection is already accepted. SkySpecs serves 130GW, has $42B of assets under contract and has inspected 745,000+ blades. Solar hail is especially acute: GCube found hail was ~1.4% of US solar claims but ~54% of total solar losses; AXIS data cited ~1.3M modules, 2.7GW and $342M in gross hail claims (2019-2025).",
+      sell: ["Pre-loss solar/wind asset baseline", "Post-storm drone scan", "Panel / blade / inverter / fence / road damage detection", "Warranty vs insurance vs O&M classification", "Repair prioritization by revenue impact", "Claim packet for insurer", "Lender / tax-equity reporting"],
+      pricing: ["$5k-$50k per site inspection event", "$0.50-$3 per panel analyzed", "$10k-$100k per large hail/wind claim package", "$100k-$1M annual portfolio contract"],
+      market: "US has tens of GW of utility-scale solar and ~150GW+ of wind; SkySpecs alone monitors ~65% of North American blades. Hail/SCS losses are a fast-growing, insurer-prioritized exposure (SCS ~$50B+ global insured losses in 2025), with strong lender/tax-equity reporting needs.",
+      journey: {
+        before: ["A hailstorm or high-wind event hits a solar/wind site.", "Owner does not know module/blade/inverter damage extent for days.", "O&M, warranty and insurance responsibilities are tangled and contested.", "Manual drone review is slow; revenue-impact prioritization is guesswork.", "Insurer claim and lender/tax-equity reports are reconstructed late."],
+        after: ["Pre-loss baseline already exists for every asset.", "Post-storm drone scan is ingested and AI flags damaged panels/blades/inverters/fences/roads.", "Each defect is classified warranty vs insurance vs O&M.", "Repairs are prioritized by revenue impact (MWh at risk).", "Insurer claim packet and lender/tax-equity reports generate automatically."],
+      },
+      comp: "SkySpecs (130GW, $42B AUC, 745k+ blades) proves drone-native asset inspection is an accepted, fundable category.",
+      sources: [
+        { label: "SkySpecs — 130GW, $42B AUC, 745,000+ blades", url: "https://skyspecs.com/" },
+        { label: "pv magazine — hail ~1.4% of solar claims but ~54% of losses; AXIS $342M (2019-2025)", url: "https://www.pv-magazine.com/2025/09/19/hail-damage-to-solar-projects-1-of-filed-claims-but-over-50-of-total-losses/" },
+        { label: "kWh Analytics — 2025 Solar Risk Assessment (hail 73% of losses, 6% of incidents)", url: "https://kwhanalytics.com/wp-content/uploads/2025/06/Solar-Risk-Assessment-2025.pdf" },
+      ],
+      confidence: "high",
+    },
+    {
+      rank: 4,
+      name: "Telecom, fiber & tower operators",
+      speed: "Close to utilities, often faster via regional operators",
+      customers: ["Regional fiber ISPs", "Cable operators", "Tower companies", "Broadband co-ops", "Fiber restoration contractors", "Tower maintenance vendors"],
+      whyBuy: "Storms, pole hits, construction cuts, floods and fires create outages. The pain is physical location, proof, crew dispatch, SLA exposure and contractor reimbursement. Hyper Networks markets 24/7 fiber restoration for storm damage, construction cuts and large outages.",
+      sell: ["Outage polygon + OTDR fault location", "Truck / drone / field image capture", "Pole / strand / fiber / cabinet / tower damage card", "Crew and splice recommendation", "Customer / SLA evidence", "Insurance or contractor chargeback packet"],
+      pricing: ["$50k-$250k readiness fee", "$100-$500 per verified damage location", "$5-$25 per network mile inspected", "$25k-$250k per major outage event"],
+      market: "US has ~150k+ communications towers and millions of fiber route-miles; carriers run large NOC/field budgets (e.g., AT&T's Network Disaster Recovery fleet). Regional fiber ISPs and restoration vendors can buy faster than national carriers.",
+      journey: {
+        before: ["An outage is detected but the physical cause/location is unclear.", "Crews drive the route hunting for cuts, pole hits or flooded vaults.", "Damage proof is inconsistent; SLA exposure mounts.", "Splice/crew decisions are made on the fly.", "Contractor chargebacks and insurance claims lack clean evidence."],
+        after: ["Outage polygon + OTDR data localize the fault fast.", "Truck/drone/field capture documents pole/strand/fiber/cabinet/tower damage.", "AI produces a damage card and recommends crew + splice plan.", "Customer/SLA evidence is generated automatically.", "Insurance or contractor chargeback packet is assembled per event."],
+      },
+      comp: "Hyper Networks (24/7 fiber restoration) shows the restoration-vendor channel and recurring event pain.",
+      sources: [
+        { label: "Hyper Networks — 24/7 telecom/fiber restoration", url: "https://hypernetworksinc.com/restoration" },
+        { label: "AT&T — Network Disaster Recovery (Hurricane Milton)", url: "https://about.att.com/pages/disaster-recovery/2024/storm-milton" },
+      ],
+      confidence: "moderate-high",
+    },
+    {
+      rank: 5,
+      name: "3PLs, warehouses & freight claims",
+      speed: "Lower ACV, very fast, usage-heavy",
+      customers: ["3PL warehouses", "Cold storage", "Freight forwarders", "LTL carriers", "Distributors", "Manufacturers shipping high-value goods"],
+      whyBuy: "Freight claims die from missing proof. CargoShot sells exactly around 'proof of condition' for shipping, receiving, cross-dock, damage, chargebacks and GPS photo data. Carriers rarely pay because it is hard to prove the condition of freight at the point of departure.",
+      sell: ["Inbound/outbound pallet photo proof", "Damage detection", "Seal / label / count verification", "Carrier liability packet", "Chargeback evidence", "Customer dispute dashboard"],
+      pricing: ["$1-$5 per shipment inspection", "$50-$250 per claim packet", "$1k-$10k per facility / month"],
+      market: "Billions in annual freight damage/chargebacks across millions of daily shipments; could become a self-serve SMB motion. Less defensible than infrastructure recovery unless you own huge volume.",
+      journey: {
+        before: ["Freight is loaded/unloaded with no condition record at each transfer.", "Damage surfaces downstream; nobody can prove where it happened.", "Carriers decline liability; chargebacks pile up.", "Claims teams chase photos across sites and emails.", "Disputes drag on and margin leaks."],
+        after: ["Workers capture guided pallet/photo proof at each transfer point.", "AI detects damage and verifies seal/label/count.", "A documented chain of condition pinpoints where/when freight was mishandled.", "Carrier-liability and chargeback packets generate automatically.", "A dispute dashboard resolves claims faster."],
+      },
+      comp: "CargoShot ('proof of condition' across shipping/receiving/cross-dock) validates the unit and buyer.",
+      sources: [
+        { label: "CargoShot — proof of condition for freight/3PL", url: "https://www.cargoshot.com/" },
+      ],
+      confidence: "moderate",
+    },
+    {
+      rank: 6,
+      name: "Commercial real estate, multifamily & hotels",
+      speed: "Large surface, needs channel leverage",
+      customers: ["Greystar", "Asset Living", "CBRE / Cushman property management", "Hotel owners", "REITs", "HOA / condo portfolio managers", "Industrial landlords"],
+      whyBuy: "Storms, roof damage, water damage, fire, mold and business interruption create messy multi-building claims. FM's 2025 report found 62% of risk decision-makers suffered at least one severe extreme-weather disruption in the prior three years, and policies were estimated to cover only ~half of potential weather losses.",
+      sell: ["Pre-loss property vault", "Storm walkthrough capture", "Roof / facade / window / water-intrusion detection", "Tenant / business-interruption documentation", "Contractor bid comparison", "Insurance packet"],
+      pricing: ["$100-$500 / property / month", "$1k-$10k per claim packet", "$25k-$250k per portfolio event"],
+      market: "Hundreds of thousands of commercial/multifamily/hotel assets; CRE insurance costs rose ~154% (2017-2024) and high-risk assets trade at ~17% discounts, so portfolio risk/evidence has clear NOI and valuation pull. Best reached via brokers/lenders to avoid property-by-property fragmentation.",
+      journey: {
+        before: ["A storm hits a multi-building portfolio.", "Property managers, contractors and guards send photos in separate threads.", "Ops cannot tell which buildings are damaged or accessible.", "Business-interruption evidence is reconstructed weeks later.", "Multi-building claims and contractor bids are chaotic and slow."],
+        after: ["A pre-loss property vault baselines every asset.", "Guided storm walkthroughs capture roof/facade/window/water intrusion.", "AI prioritizes buildings by damage, tenant impact and BI exposure.", "Tenant/BI documentation and an insurance packet generate automatically.", "Contractor bids are compared on a like-for-like scope."],
+      },
+      comp: "FM Global's 62% severe-disruption finding shows the buyer already feels recurring extreme-weather pain.",
+      sources: [
+        { label: "FM Global — 62% suffered severe extreme-weather disruption (2025)", url: "https://newsroom.fmglobal.com/releases/fm-report-extreme-weather-risk-is-growing-as-are-gaps-in-resilience" },
+        { label: "Bisnow / First Street — CRE insurance +154%, ~17% value discount", url: "https://www.bisnow.com/national/news/capital-markets/climate-risk-us-commercial-property-values-study-134469" },
+      ],
+      confidence: "moderate-high",
+    },
+  ],
+};
+
 /* --------------------------------------------------------------------------
  * Sources (clickable bibliography)
  * ------------------------------------------------------------------------ */
@@ -523,4 +656,12 @@ const SOURCES = [
   { group: "Private infrastructure", label: "HousingWire / First Street — REIT 1-in-100 event revenue losses near $43B", url: "https://www.housingwire.com/articles/climate-risk-reit-revenue-first-street/" },
   { group: "Private-market GTM", label: "ABA — Business interruption claim checklist and evidence needs", url: "https://www.americanbar.org/groups/gpsolo/resources/ereport/archive/filing-business-interruption-claim-checklist/" },
   { group: "Private-market GTM", label: "NetSuite — Supply chain disruptions cost businesses ~$184B annually", url: "https://www.netsuite.com/portal/resource/articles/inventory-management/supply-chain-risks.shtml" },
+  { group: "Private ICP deep dive", label: "First Onsite — large-loss restoration (110+ locations, 2,600+ pros)", url: "https://firstonsite.com/service/large-complex-loss/" },
+  { group: "Private ICP deep dive", label: "Verisk/Hover — claims ~22 days (~34 after CAT); Xactimate integration", url: "https://www.verisk.com/company/newsroom/hover-expands-offerings-within-verisks-xactimate-to-advance-property-claims-efficiency/" },
+  { group: "Private ICP deep dive", label: "SkySpecs — 130GW served, $42B assets under contract, 745,000+ blades", url: "https://skyspecs.com/" },
+  { group: "Private ICP deep dive", label: "pv magazine — solar hail ~1.4% of claims but ~54% of losses; AXIS $342M", url: "https://www.pv-magazine.com/2025/09/19/hail-damage-to-solar-projects-1-of-filed-claims-but-over-50-of-total-losses/" },
+  { group: "Private ICP deep dive", label: "kWh Analytics — 2025 Solar Risk Assessment (hail 73% of losses)", url: "https://kwhanalytics.com/wp-content/uploads/2025/06/Solar-Risk-Assessment-2025.pdf" },
+  { group: "Private ICP deep dive", label: "Hyper Networks — 24/7 telecom/fiber restoration", url: "https://hypernetworksinc.com/restoration" },
+  { group: "Private ICP deep dive", label: "CargoShot — proof of condition for freight/3PL", url: "https://www.cargoshot.com/" },
+  { group: "Private ICP deep dive", label: "FM Global — 62% suffered severe extreme-weather disruption (2025)", url: "https://newsroom.fmglobal.com/releases/fm-report-extreme-weather-risk-is-growing-as-are-gaps-in-resilience" },
 ];

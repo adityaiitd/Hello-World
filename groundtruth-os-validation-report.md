@@ -359,9 +359,75 @@ Selected anchors:
 The first version was too utility-centric. The bigger company is not merely "AI storm response for utilities." It is the **evidence, dispatch and recovery operating layer for physical disruption**. Utilities are still the clean wedge, but restoration firms, insurers, telecom/data centers and private infrastructure operators may be faster monetization channels and better proof of the broader platform.
 
 
+
+
 ---
 
-## 14. Expansion ladder — $1B → $10B → $30B
+## 14. Private ICP deep dive: who, what we sell, market size, journey
+
+Six private ICPs, ranked by speed-to-revenue. The product surface is constant: **guided capture -> AI damage/condition understanding -> evidence packet -> payout/dispatch**. What changes is the customer, the document that gets them paid, the pricing unit and the integration. **Start with two parallel lanes:** (1) restoration contractors + claims networks (fastest weekly usage, per-claim revenue); (2) renewable energy owners (high ACV, drone-native, catastrophic hail/wind, strong insurance/finance angle).
+
+### 14.1 Restoration contractors (priority 1 — fastest)
+- **Customers:** BELFOR, First Onsite, SERVPRO franchise groups, Paul Davis / FirstService, BluSky, ATI Restoration, Cotton Holdings, PuroClean, regional water/fire/storm firms.
+- **Why they buy:** they do the work first, then fight to get paid; every missing photo, weak moisture log or unlabeled room photo cuts payout. First Onsite positions around large-loss documentation and insurer alignment across [110+ locations and 2,600+ professionals](https://firstonsite.com/service/large-complex-loss/).
+- **What we sell:** guided jobsite capture; AI photo labeling by room/damage type/phase; moisture/drying logs; before/during/after proof; carrier-ready claim packet; Xactimate/Symbility/PDF export; invoice-defense dashboard.
+- **Pricing:** $500-$2,500 per large-loss claim packet; $50-$200 per daily documentation run; 1%-3% invoice-defense/supplement fee (where legally clean); $20k-$150k annual platform fee per regional operator.
+- **Market size:** US damage restoration ~$7.1B narrow ([IBISWorld](https://www.ibisworld.com/united-states/industry/damage-restoration-services/6278/)) up to ~$85B+ broad; ~60,000 firms consolidating from ~15k toward <10k. Weekly pain, ideal for channel + roll-up.
+- **Journey — before:** mitigate first, document later -> unlabeled photos across rooms/days -> paper moisture logs -> estimator rebuilds scope from memory -> carrier kicks back for missing evidence -> supplements/invoice defense eat margin.
+- **Journey — after:** guided capture checklist per room/phase -> AI auto-labels photos live -> moisture/drying trended automatically -> carrier-ready packet exports to Xactimate/Symbility -> invoice-defense dashboard flags gaps before submission.
+
+### 14.2 TPAs, adjusters & claims networks (priority 2 — bigger, more competitive)
+- **Customers:** Sedgwick, Crawford, Pilot Catastrophe, Alacrity, Verisk ecosystem partners, independent/public adjuster firms.
+- **Why they buy:** claim cycle time and field labor are expensive — [Hover reports ~22 days to settle, ~34 after catastrophes](https://www.verisk.com/company/newsroom/hover-expands-offerings-within-verisks-xactimate-to-advance-property-claims-efficiency/), and integrated deeper into Xactimate. **Do not replace Xactimate; feed better evidence into it.**
+- **What we sell:** FNOL photo intake; guided inspection checklist; damage classification; material ID; estimate draft; fraud/inconsistency flags; adjuster review queue; claim-file export.
+- **Pricing:** per-claim intake/triage; per-inspection guided capture; enterprise platform + API; risk/fraud analytics subscription.
+- **Market size:** US P&C claims paid run into the hundreds of billions annually; loss-adjustment expense is a large dedicated pool. The wedge is cycle time and leakage, not the estimating system of record.
+- **Journey — before:** sparse FNOL photos -> inspection days out -> manual, variable classification -> estimates bounce -> ~22-34 day cycle, leakage/fraud slips through.
+- **Journey — after:** guided carrier-compliant capture at FNOL -> AI classifies damage/materials and drafts estimate -> inconsistencies flagged -> clean file into Xactimate/XactAnalysis -> prioritized adjuster queue, lower cycle time.
+
+### 14.3 Renewable energy owners (priority 2 lane — high ACV)
+- **Customers:** solar & wind asset owners, IPPs, renewable O&M firms, insurers/brokers, tracker/inverter/panel warranty teams.
+- **Why they buy:** hail/wind/fire/flood/component failure create enormous losses and drone inspection is accepted — [SkySpecs serves 130GW, $42B AUC, 745,000+ blades](https://skyspecs.com/). Solar hail is acute: [hail ~1.4% of US solar claims but ~54% of losses; AXIS ~1.3M modules, 2.7GW, $342M gross hail claims 2019-2025](https://www.pv-magazine.com/2025/09/19/hail-damage-to-solar-projects-1-of-filed-claims-but-over-50-of-total-losses/); [kWh Analytics puts hail at 73% of losses, 6% of incidents](https://kwhanalytics.com/wp-content/uploads/2025/06/Solar-Risk-Assessment-2025.pdf).
+- **What we sell:** pre-loss asset baseline; post-storm drone scan; panel/blade/inverter/fence/road damage detection; warranty-vs-insurance-vs-O&M classification; repair prioritization by revenue impact; insurer claim packet; lender/tax-equity reporting.
+- **Pricing:** $5k-$50k per site inspection event; $0.50-$3 per panel analyzed; $10k-$100k per large hail/wind claim package; $100k-$1M annual portfolio contract.
+- **Market size:** tens of GW of US utility-scale solar and ~150GW+ wind; SkySpecs alone monitors ~65% of NA blades; hail/SCS losses are insurer-prioritized and growing.
+- **Journey — before:** storm hits -> damage extent unknown for days -> warranty/insurance/O&M tangled -> manual drone review, guesswork prioritization -> claim and lender/tax-equity reports late.
+- **Journey — after:** pre-loss baseline exists -> drone scan ingested, AI flags damaged components -> classified warranty/insurance/O&M -> prioritized by MWh at risk -> insurer + lender/tax-equity packets auto-generated.
+
+### 14.4 Telecom, fiber & tower operators (priority 3)
+- **Customers:** regional fiber ISPs, cable operators, tower companies, broadband co-ops, fiber restoration contractors, tower maintenance vendors.
+- **Why they buy:** storms/pole hits/cuts/floods/fires create outages; pain is physical location, proof, dispatch, SLA exposure, contractor reimbursement. [Hyper Networks markets 24/7 fiber restoration](https://hypernetworksinc.com/restoration).
+- **What we sell:** outage polygon + OTDR fault location; truck/drone/field capture; pole/strand/fiber/cabinet/tower damage card; crew & splice recommendation; customer/SLA evidence; insurance/contractor chargeback packet.
+- **Pricing:** $50k-$250k readiness fee; $100-$500 per verified damage location; $5-$25 per network mile inspected; $25k-$250k per major outage event.
+- **Market size:** ~150k+ US comms towers and millions of fiber route-miles; large carrier NOC/field budgets ([AT&T NDR](https://about.att.com/pages/disaster-recovery/2024/storm-milton)); regional operators/vendors buy faster.
+- **Journey — before:** outage detected, cause unclear -> crews hunt the route -> inconsistent proof, SLA exposure -> ad hoc splice/crew calls -> chargebacks/claims lack evidence.
+- **Journey — after:** outage polygon + OTDR localize fault -> capture documents damage -> AI damage card + crew/splice plan -> SLA evidence auto-generated -> chargeback/claim packet per event.
+
+### 14.5 3PLs, warehouses & freight claims (priority 4 — low ACV, fast, usage-heavy)
+- **Customers:** 3PL warehouses, cold storage, freight forwarders, LTL carriers, distributors, high-value-goods manufacturers.
+- **Why they buy:** freight claims die from missing proof; [CargoShot sells "proof of condition"](https://www.cargoshot.com/) for shipping/receiving/cross-dock with GPS photo data.
+- **What we sell:** inbound/outbound pallet photo proof; damage detection; seal/label/count verification; carrier-liability packet; chargeback evidence; dispute dashboard.
+- **Pricing:** $1-$5 per shipment inspection; $50-$250 per claim packet; $1k-$10k per facility/month.
+- **Market size:** billions in annual freight damage/chargebacks across millions of daily shipments; a potential self-serve SMB motion, but less defensible than infrastructure recovery unless you own volume.
+- **Journey — before:** no condition record at transfers -> downstream damage, no proof -> carriers decline liability -> claims teams chase photos -> disputes drag, margin leaks.
+- **Journey — after:** guided proof at each transfer -> AI detects damage, verifies seal/label/count -> documented chain of condition pinpoints fault -> carrier-liability/chargeback packets auto-generate -> dispute dashboard resolves faster.
+
+### 14.6 Commercial real estate, multifamily & hotels (priority 5 — large, needs channel)
+- **Customers:** Greystar, Asset Living, CBRE/Cushman property management, hotel owners, REITs, HOA/condo portfolio managers, industrial landlords.
+- **Why they buy:** storms/roof/water/fire/mold/BI create messy multi-building claims; [FM's 2025 report found 62% suffered a severe extreme-weather disruption in the prior three years](https://newsroom.fmglobal.com/releases/fm-report-extreme-weather-risk-is-growing-as-are-gaps-in-resilience) and policies cover only ~half of potential losses.
+- **What we sell:** pre-loss property vault; storm walkthrough capture; roof/facade/window/water-intrusion detection; tenant/BI documentation; contractor bid comparison; insurance packet.
+- **Pricing:** $100-$500/property/month; $1k-$10k per claim packet; $25k-$250k per portfolio event.
+- **Market size:** hundreds of thousands of CRE/multifamily/hotel assets; [CRE insurance costs +154% (2017-2024), high-risk assets at ~17% discount](https://www.bisnow.com/national/news/capital-markets/climate-risk-us-commercial-property-values-study-134469) — clear NOI/valuation pull; reach via brokers/lenders.
+- **Journey — before:** storm hits a portfolio -> photos in separate threads -> unclear which buildings are damaged/accessible -> BI evidence reconstructed weeks later -> chaotic multi-building claims/bids.
+- **Journey — after:** pre-loss vault baselines assets -> guided walkthroughs capture damage -> AI prioritizes by damage/tenant/BI exposure -> tenant/BI docs + insurance packet auto-generate -> like-for-like contractor bid comparison.
+
+### 14.7 Where to start
+Run the two lanes in parallel: **restoration contractors / claims networks** for fastest adoption, immediate ROI, per-claim usage and private budget; and **renewable energy owners** for higher ACV, drone-native workflows, catastrophic hail/wind losses and a strong insurance/finance angle.
+
+
+---
+
+## 15. Expansion ladder — $1B → $10B → $30B
 
 The wedge is storm response. The company is the live truth layer for physical infrastructure. Higher tiers are aspirational and low-confidence — the prize, not the plan.
 
@@ -372,7 +438,7 @@ The wedge is storm response. The company is the live truth layer for physical in
 
 ---
 
-## 15. Risks & kill-criteria
+## 16. Risks & kill-criteria
 
 | Risk | Severity | Kill-criterion |
 |---|---|---|
@@ -385,7 +451,7 @@ The wedge is storm response. The company is the live truth layer for physical in
 
 ---
 
-## 16. Where to start (90-day to first-season checklist)
+## 17. Where to start (90-day to first-season checklist)
 
 1. Pick **1–2 disaster-prone, co-op-dense states**; map the statewide association, G&Ts, and mutual-aid graph.
 2. Sign **one channel/framework MOU** and **one design partner** (a storm-prone co-op).
@@ -397,7 +463,7 @@ The wedge is storm response. The company is the live truth layer for physical in
 
 ---
 
-## 17. Sources
+## 18. Sources
 
 **Market & people served**
 - NRECA — Electric Co-op Facts & Figures: <https://www.electric.coop/electric-cooperative-fact-sheet>
