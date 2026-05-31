@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Interactive dashboard: data center power & energization companies, demand, and deals (US & global)." />
   <title>Data Center Power · Energization Dashboard</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/adityaiitd/Hello-World@gh-pages/styles.css" />
+  <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/gh/adityaiitd/Hello-World@gh-pages/data.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/gh/adityaiitd/Hello-World@gh-pages/app.js" defer></script>
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -30,6 +30,7 @@
     <button class="tab" data-view="tech">Technologies</button>
     <button class="tab" data-view="regions">Regions</button>
     <button class="tab" data-view="bottlenecks">Bottlenecks</button>
+    <button class="tab" data-view="strategy">Strategy</button>
   </nav>
 
   <main>
@@ -133,6 +134,10 @@
     <section id="bottlenecks" class="view">
       <p class="prose">Where value and risk concentrate. Whoever controls a scarce link holds pricing power.</p>
       <div id="bottleneckList"></div>
+    </section>
+    <!-- STRATEGY -->
+    <section id="strategy" class="view">
+      <div id="strategyContent"></div>
     </section>
   </main>
 
