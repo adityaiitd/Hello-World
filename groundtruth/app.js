@@ -37,6 +37,7 @@
     renderDisasterMap();
     renderPrivateMarkets();
     renderPrivateGtm();
+    renderIcp();
     renderLadder();
     renderRisks();
     renderSources();
@@ -427,6 +428,67 @@
     document.getElementById("privateAfter").innerHTML = PRIVATE_GTM.privateJourney.after.map((s) => `<li>${esc(s)}</li>`).join("");
     document.getElementById("privateMotions").innerHTML = PRIVATE_GTM.motions.map((m) => `
       <div class="reason"><h4>${esc(m.motion)}</h4><p>${esc(m.why)}</p><ul>${m.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ul></div>`).join("");
+  }
+
+
+
+  /* ---------------- Private ICP deep dive ---------------- */
+  const icpState = { search: "" };
+  function renderIcp() {
+    const intro = document.getElementById("icpIntro");
+    if (!intro) return;
+    intro.innerHTML = esc(PRIVATE_ICP.intro);
+    document.getElementById("icpStart").innerHTML = PRIVATE_ICP.startHere.map((l) => `
+      <div class="detail priority"><h4>${esc(l.lane)}</h4><p>${esc(l.why)}</p></div>`).join("");
+    document.getElementById("icpSearch").addEventListener("input", (e) => { icpState.search = e.target.value.toLowerCase(); drawIcp(); });
+    drawIcp();
+  }
+  function filterIcp() {
+    return PRIVATE_ICP.icps.filter((i) => {
+      if (!icpState.search) return true;
+      const hay = (i.name + " " + i.speed + " " + i.customers.join(" ") + " " + i.whyBuy + " " + i.sell.join(" ") + " " + i.pricing.join(" ") + " " + i.market).toLowerCase();
+      return hay.includes(icpState.search);
+    });
+  }
+  function drawIcp() {
+    const list = filterIcp();
+    document.getElementById("icpCount").textContent = `${list.length} of ${PRIVATE_ICP.icps.length} ICPs`;
+    document.getElementById("icpList").innerHTML = list.map((i) => `
+      <div class="card icp-card">
+        <div class="icp-head">
+          <h3><span class="icp-rank">#${i.rank}</span> ${esc(i.name)}</h3>
+          <div class="badges"><span class="badge stage">${esc(i.speed)}</span>${confBadge(i.confidence)}</div>
+        </div>
+        <div class="icp-grid">
+          <div class="icp-col">
+            <div class="icp-label">Customers (ICP)</div>
+            <div class="badges">${i.customers.map((c) => `<span class="badge">${esc(c)}</span>`).join("")}</div>
+            <div class="icp-label">Why they buy</div>
+            <p class="prose">${esc(i.whyBuy)}</p>
+            <div class="icp-label">Market size</div>
+            <p class="prose">${esc(i.market)}</p>
+            <div class="icp-label">Comparable / proof</div>
+            <p class="prose">${esc(i.comp)}</p>
+          </div>
+          <div class="icp-col">
+            <div class="icp-label">What we sell</div>
+            <ul class="facts">${i.sell.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
+            <div class="icp-label">Pricing</div>
+            <ul class="facts">${i.pricing.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
+          </div>
+        </div>
+        <div class="icp-journey">
+          <div class="icp-jcol before">
+            <div class="icp-label">Journey — before</div>
+            <ol class="steps">${i.journey.before.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+          </div>
+          <div class="icp-jcol after">
+            <div class="icp-label">Journey — after (GroundTruth)</div>
+            <ol class="steps">${i.journey.after.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+          </div>
+        </div>
+        <div class="icp-sources">${i.sources.map((s) => `<a class="src" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}<span class="u">${esc(s.url)}</span></a>`).join("")}</div>
+      </div>`).join("");
   }
 
   /* ---------------- Ladder ---------------- */
