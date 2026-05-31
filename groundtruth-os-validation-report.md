@@ -266,9 +266,102 @@ Insurers (claims) ──────────┘                 │
 Channel (low-CAC): Statewide assoc / G&T / mutual aid ──► utilities
 ```
 
+
+
 ---
 
-## 13. Expansion ladder — $1B → $10B → $30B
+## 13. Private markets: the parallel wedge we should not ignore
+
+Utilities are the cleanest first narrative, but the underlying problem is not utility-specific. Any private company with distributed physical assets faces the same failure mode after a disaster: leaders do not know what physically broke, what is accessible, which crew/vendor should go first, what evidence supports insurance or business-interruption recovery, and how to update the baseline so the next event is less expensive.
+
+**The implication:** GroundTruth should run two parallel go-to-market lanes:
+
+1. **Utilities / co-ops** — best narrative coherence, FEMA wedge, regulatory pressure, mutual-aid distribution.
+2. **Private asset owners + claims/restoration ecosystem** — faster revenue, more private budgets, richer data, less political procurement.
+
+The product surface is the same: **live damage truth + recovery workplan + evidence package**.
+
+### 13.1 The overall spend map: this is bigger than utility storm response
+
+Annual disaster and physical-disruption spend is not one budget. It is a stack:
+
+- direct asset damage;
+- insured losses;
+- uninsured losses / deductibles;
+- business interruption and contingent business interruption;
+- customer outage cost;
+- emergency response and restoration labor;
+- resilience capex;
+- public grants and regulatory compliance;
+- insurance/reinsurance risk pricing;
+- supply-chain rerouting and expedited logistics.
+
+Selected anchors:
+
+| Cost / spend pool | Anchor | Why it matters |
+|---|---:|---|
+| Global natural catastrophe economic losses | **$220B** in 2025 | Swiss Re; insured losses were **$107B**, so even in a high-insurance year there is a major protection gap. |
+| US billion-dollar weather/climate disasters | **$149.3B/yr** avg 2020-2024 | NOAA/NCEI via Climate Central; 2025 Climate Central estimate was **$115B**. |
+| US major power outage customer cost | **$121B** in 2024 | ORNL; $67B/yr average 2018-2024. This is the hidden private-business pain behind utility outages. |
+| Global disaster restoration services | **$43B-$45B** 2025-2026 | Low-concentration market; labor-heavy; ripe for AI-native workflow and roll-up. |
+| US narrow damage restoration services | **$7.1B** | IBISWorld-style narrow category; broader property-restoration/rebuild estimates are much larger depending on scope. |
+| Freight rail climate resilience investment | **~$23B/yr** | AAR; railroads already spend to fortify networks against floods, wildfires, storms and heat. |
+| US port trade exposure | **$2.28T** of trade | GAO; ports are concentrated, high-value physical nodes affected by hurricanes/flooding. |
+| North American midstream infrastructure need | **$40B-$48B/yr** | INGAA Foundation through 2052; not all resilience, but physical-risk hardening is embedded in the capex story. |
+| REIT severe-event revenue at risk | **~$43B** | First Street analysis of 65 REITs for a 1-in-100-year event. |
+
+**Bottom line:** the addressable spend is comfortably **multi-hundred-billion dollars annually** in the US in bad years, and **trillion-dollar-plus globally** once supply-chain losses, resilience capex, infrastructure exposure and insurance/reinsurance capital are included. GroundTruth does not need to capture the spend directly; it needs to become the evidence and action layer that influences how that spend is allocated.
+
+### 13.2 Hazards and who pays
+
+| Hazard / physical issue | Cost anchor | Who pays | GroundTruth opportunity |
+|---|---|---|---|
+| Severe convective storms (hail/tornado/wind) | $50B+ global insured losses in 2025 | Insurers, reinsurers, property owners, utilities, restoration firms | Roof/asset damage detection, claims triage, crew routing, evidence packs |
+| Wildfire | $40B insured losses from 2025 LA wildfires alone | Insurers, CRE/homeowners, utilities, telecom, government | Pre/post fire damage truth, access routes, utility/telecom restoration, defensible claims |
+| Flood / storm surge / hurricanes | US disaster losses average $149.3B/yr (2020-2024) | FEMA, NFIP/private insurers, ports, utilities, industrials, CRE owners | Flood extent + asset damage + ingress/egress + reimbursement evidence |
+| Power outages | $121B US customer cost in 2024 | Commercial/industrial customers, utilities, backup-power vendors, insurers | Outage cause, facility impact, generator/vendor dispatch, BI evidence |
+| Extreme heat / freeze / winter storms | Embedded across outage, rail, pipeline, property, industrial losses | Utilities, railroads, pipelines, industrials, insurers | Asset stress detection, access conditions, freeze/heat-risk baselines |
+| Supply-chain disruption | ~$184B annual business losses cited for 2025 | Shippers, manufacturers, retailers, logistics firms, insurers | Physical disruption map across suppliers, ports, rail, warehouses, roads |
+
+### 13.3 Private segments to sell into
+
+| Segment | Buyer | Pain | Hook | Priority |
+|---|---|---|---|---:|
+| Restoration contractors / disaster-recovery consultants | CEO/COO, dispatch, large-loss manager | Scattered photos, manual estimates, slow scoping, labor allocation, carrier documentation | AI damage scoping + evidence packets + crew/vendor dispatch | 1 |
+| Insurers, reinsurers, TPAs, brokers | Claims, CAT response, underwriting, reinsurance analytics | Slow claims, leakage, fraud, reserve uncertainty, poor ground truth | Verified damage evidence + live claims triage + risk/change-detection data | 2 |
+| Telecom / broadband operators | Network ops, field ops, emergency response | Cell sites/fiber damaged by wind/fire/flood/theft; access blocked | Network damage map + access intelligence + temporary-asset placement | 3 |
+| Data centers / critical digital infrastructure | Site ops, facilities, risk, energy | Power/cooling/access failures, SLA exposure | Facility/access/power-risk truth + vendor dispatch + insurance/SLA evidence | 3 |
+| Freight railroads | Network ops, engineering, maintenance-of-way | Flood washouts, heat buckling, wildfire, bridge/ballast damage | ROW damage intelligence + route/access triage | 4 |
+| Ports, terminals, logistics parks | Port ops, terminal operators, drayage/logistics | Hurricane/flood closures, yard damage, dwell spikes | Yard/port live damage + recovery sequencing | 4 |
+| Pipelines / midstream / energy assets | Ops, integrity, EHS, emergency response | Flood/wildfire/subsidence/landslide across long linear assets | Corridor change detection + access/repair triage | 4 |
+| CRE / REITs / large landlords | Asset mgmt, property ops, risk/insurance | Insurance premiums, asset-value discounts, tenant disruption | Portfolio baseline + post-event evidence + capex prioritization | 5 |
+| Manufacturing / industrial | Plant manager, reliability, finance, insurance | Flood/fire/power stops production; BI/CBI evidence burden | Plant damage/access map + BI evidence + recovery workplan | 5 |
+| EPC / engineering / resilience consultants | Practice leads, disaster recovery, infrastructure advisory | Manual assessments, report drafting, shortage of inspectors | AI assessment/reporting workbench that multiplies delivery capacity | 1 |
+
+### 13.4 Private-market GTM
+
+**Motion 1 — Partner/channel: restoration + disaster-recovery firms.** Sell an AI assessment/reporting workbench to large-loss teams; offer surge-mode pricing during CAT events; use partners' customers to collect cross-sector outcome data; acquire/roll up smaller firms once the workflow improves margins. This is the fastest route to revenue because they already monetize disasters and are labor-constrained.
+
+**Motion 2 — Data/API: insurers, TPAs, reinsurers, brokers.** Start with event-specific damage feeds and evidence APIs; integrate into claims triage and reserve workflows; sell portfolio risk/change-detection subscriptions between events; expand to underwriting and reinsurance analytics. This is the best payer for verified truth because they can buy data before adopting a full workflow.
+
+**Motion 3 — Enterprise: telecom, data centers, rail/ports/pipelines.** Pick one vertical with a lighthouse logo and high downtime cost; baseline assets and access routes before season; run tabletop + live event activation; convert to annual resilience/recovery subscription. High ACV, but longer cycles.
+
+**Motion 4 — Portfolio: CRE/REITs/industrial.** Sell portfolio baseline + insurance documentation + post-event triage; partner with brokers/lenders to reach many owners; attach resilience capex prioritization; feed evidence into BI/CBI claims.
+
+### 13.5 Private journey: before vs. after
+
+**Before:** storm/flood/fire hits a portfolio site -> ops does not know which buildings/assets are damaged or accessible -> photos arrive from property managers, contractors, guards and drones in separate threads -> claims teams and restoration contractors duplicate site visits -> business-interruption evidence is reconstructed weeks later -> vendors are dispatched based on phone calls, not verified severity.
+
+**After:** GroundTruth shows each affected site, access route and suspected damage type -> AI organizes photos/video/satellite/fixed-camera feeds into a verified evidence graph -> system prioritizes sites by downtime, revenue, safety and customer/SLA impact -> restoration/EPC vendors receive scoped work packets -> insurance/BI/CBI claim packets are generated as work happens -> the asset baseline updates for the next event and for insurance renewal negotiations.
+
+### 13.6 What we were missing
+
+The first version was too utility-centric. The bigger company is not merely "AI storm response for utilities." It is the **evidence, dispatch and recovery operating layer for physical disruption**. Utilities are still the clean wedge, but restoration firms, insurers, telecom/data centers and private infrastructure operators may be faster monetization channels and better proof of the broader platform.
+
+
+---
+
+## 14. Expansion ladder — $1B → $10B → $30B
 
 The wedge is storm response. The company is the live truth layer for physical infrastructure. Higher tiers are aspirational and low-confidence — the prize, not the plan.
 
@@ -279,7 +372,7 @@ The wedge is storm response. The company is the live truth layer for physical in
 
 ---
 
-## 14. Risks & kill-criteria
+## 15. Risks & kill-criteria
 
 | Risk | Severity | Kill-criterion |
 |---|---|---|
@@ -292,7 +385,7 @@ The wedge is storm response. The company is the live truth layer for physical in
 
 ---
 
-## 15. Where to start (90-day to first-season checklist)
+## 16. Where to start (90-day to first-season checklist)
 
 1. Pick **1–2 disaster-prone, co-op-dense states**; map the statewide association, G&Ts, and mutual-aid graph.
 2. Sign **one channel/framework MOU** and **one design partner** (a storm-prone co-op).
@@ -304,7 +397,7 @@ The wedge is storm response. The company is the live truth layer for physical in
 
 ---
 
-## 16. Sources
+## 17. Sources
 
 **Market & people served**
 - NRECA — Electric Co-op Facts & Figures: <https://www.electric.coop/electric-cooperative-fact-sheet>
@@ -337,3 +430,17 @@ The wedge is storm response. The company is the live truth layer for physical in
 
 **Fast-revenue pool**
 - ICF — 2025 10-K (~$1.87B revenue): <https://www.stocktitan.net/sec-filings/ICFI/10-k-icf-international-inc-files-annual-report-e82624e0f817.html>
+
+**Private-market disaster spend & infrastructure**
+- Swiss Re — 2025 nat-cat losses ($220B economic / $107B insured): <https://www.swissre.com/institute/research/sigma-research/sigma-2026-01-natcat-2025-wildfire-storm-risk/global-natcat-losses-2025.html>
+- ORNL — US major outages cost $121B in 2024: <https://www.ornl.gov/news/analysis-shows-power-outages-cost-us-electricity-customers-billions>
+- Mordor — Disaster restoration services market: <https://www.mordorintelligence.com/industry-reports/disaster-restoration-services-market>
+- IBISWorld — US damage restoration services: <https://www.ibisworld.com/united-states/industry/damage-restoration-services/6278/>
+- AAR — Freight rail invests ~$23B/yr in climate resilience: <https://www.aar.org/issue/freight-rail-climate-change/>
+- GAO — US ports handle $2.28T of trade and face resilience gaps: <https://www.gao.gov/products/gao-25-107159>
+- INGAA — $1T+ North American midstream infrastructure need: <https://ingaa.org/stay-current/what-they-are-saying-ingaa-foundation-midstream-infrastructure-report/>
+- AT&T — Hurricane Milton network disaster response: <https://about.att.com/pages/disaster-recovery/2024/storm-milton>
+- Bisnow / First Street — CRE climate risk, insurance and valuation: <https://www.bisnow.com/national/news/capital-markets/climate-risk-us-commercial-property-values-study-134469>
+- HousingWire / First Street — REIT climate revenue loss: <https://www.housingwire.com/articles/climate-risk-reit-revenue-first-street/>
+- ABA — Business interruption claim checklist: <https://www.americanbar.org/groups/gpsolo/resources/ereport/archive/filing-business-interruption-claim-checklist/>
+- NetSuite — Supply-chain disruptions cost businesses ~$184B annually: <https://www.netsuite.com/portal/resource/articles/inventory-management/supply-chain-risks.shtml>
