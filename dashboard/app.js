@@ -31,8 +31,8 @@
     renderTech();
     renderRegions();
     renderBottlenecks();
+    renderStrategy();
     setupModal();
-    // Charts that are visible on load
     buildOverviewCharts();
   }
 
@@ -422,6 +422,140 @@
         <p class="bn-detail">${b.detail}</p>
         <div class="badges">${b.controllers.map((c) => `<span class="badge">${c}</span>`).join("")}</div>
       </div>`).join("");
+  }
+
+  /* ---------------- Strategy ---------------- */
+  function renderStrategy() {
+    if (typeof STRATEGY === "undefined") return;
+    const S = STRATEGY;
+    const el = document.getElementById("strategyContent");
+    el.innerHTML = `
+      <!-- Opportunity -->
+      <div class="card strat-hero">
+        <h3>${S.opportunity.title}</h3>
+        <p class="prose">${S.opportunity.text}</p>
+      </div>
+
+      <!-- Product -->
+      <div class="card">
+        <h3>${S.product.icon || "⚡"} ${S.product.name} — <span class="accent">${S.product.tagline}</span></h3>
+        <p class="prose" style="margin-bottom:16px">${S.product.oneLiner}</p>
+        <div class="product-layers">
+          ${S.product.layers.map((l) => `
+            <div class="p-layer">
+              <div class="p-layer-head">
+                <span class="p-icon">${l.icon}</span>
+                <div>
+                  <div class="p-name">${l.name}</div>
+                  <div class="p-phase">${l.phase}</div>
+                </div>
+              </div>
+              <div class="p-what">${l.what}</div>
+              <p class="p-detail">${l.detail}</p>
+              <div class="p-rev"><b>Revenue:</b> ${l.revenue}</div>
+            </div>`).join("")}
+        </div>
+      </div>
+
+      <!-- First Product -->
+      <div class="card">
+        <h3>First product: ${S.firstProduct.name}</h3>
+        <div class="strat-section">
+          <div class="label">Why this first</div>
+          <ul class="facts">${S.firstProduct.why.map((w) => `<li>${w}</li>`).join("")}</ul>
+        </div>
+        <div class="strat-section">
+          <div class="label">MVP scope</div>
+          <ul class="facts">${S.firstProduct.mvp.map((m) => `<li>${m}</li>`).join("")}</ul>
+        </div>
+        <div class="strat-section">
+          <div class="label">Timeline</div>
+          <p>${S.firstProduct.timeline}</p>
+        </div>
+      </div>
+
+      <!-- ICP -->
+      <div class="card">
+        <h3>${S.icp.title}</h3>
+        <div class="icp-block primary">
+          <div class="icp-header">Primary ICP: ${S.icp.primary.segment}</div>
+          <div class="icp-specs">
+            <div><span class="k">Size</span><span>${S.icp.primary.size}</span></div>
+            <div><span class="k">Pain</span><span>${S.icp.primary.pain}</span></div>
+            <div><span class="k">Budget</span><span>${S.icp.primary.budget}</span></div>
+          </div>
+          <div class="icp-examples">
+            ${S.icp.primary.examples.map((e) => `
+              <div class="icp-ex"><b>${e.name}</b> — ${e.why}</div>`).join("")}
+          </div>
+        </div>
+        <div class="icp-block secondary">
+          <div class="icp-header">Secondary ICP: ${S.icp.secondary.segment}</div>
+          <div class="icp-specs">
+            <div><span class="k">Size</span><span>${S.icp.secondary.size}</span></div>
+            <div><span class="k">Pain</span><span>${S.icp.secondary.pain}</span></div>
+            <div><span class="k">Budget</span><span>${S.icp.secondary.budget}</span></div>
+          </div>
+          <div class="icp-examples">
+            ${S.icp.secondary.examples.map((e) => `
+              <div class="icp-ex"><b>${e.name}</b> — ${e.why}</div>`).join("")}
+          </div>
+        </div>
+      </div>
+
+      <!-- Sell-to targets -->
+      <div class="card">
+        <h3>${S.sellTo.title}</h3>
+        <div class="target-grid">
+          ${S.sellTo.targets.map((t) => `
+            <div class="target-card">
+              <div class="t-head">
+                <div class="t-name">${t.name}</div>
+                <span class="badge tier${t.urgency === "Now" ? "1" : "2"}">${t.urgency}</span>
+              </div>
+              <div class="t-title">${t.title}</div>
+              <div class="t-mw">${t.mw} MW</div>
+              <p class="t-hook">"${t.hook}"</p>
+            </div>`).join("")}
+        </div>
+      </div>
+
+      <!-- Roadmap -->
+      <div class="card">
+        <h3>Roadmap</h3>
+        <div class="roadmap">
+          ${S.roadmap.map((r) => `
+            <div class="rm-phase" style="border-left-color:${r.color}">
+              <div class="rm-label" style="color:${r.color}">${r.phase}</div>
+              <ul class="facts">${r.items.map((i) => `<li>${i}</li>`).join("")}</ul>
+            </div>`).join("")}
+        </div>
+      </div>
+
+      <!-- Competitive edge -->
+      <div class="card">
+        <h3>${S.competitiveEdge.title}</h3>
+        ${S.competitiveEdge.comparisons.map((c) => `
+          <div class="comp-row">
+            <div class="comp-alt">${c.alternative}</div>
+            <div class="comp-edge">${c.edge}</div>
+          </div>`).join("")}
+      </div>
+
+      <!-- TAM -->
+      <div class="card">
+        <h3>${S.tam.title}</h3>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Metric</th><th>Value</th><th>Note</th></tr></thead>
+            <tbody>
+              ${S.tam.rows.map((r) => `
+                <tr><td>${r.label}</td><td class="mw-val">${r.value}</td><td>${r.note}</td></tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
   }
 
   /* ---------------- Chart option helpers ---------------- */

@@ -390,3 +390,157 @@ const BOTTLENECKS = [
     detail: "NRC timelines; immature SMR supply chains; <2 GW likely online before ~2033.",
     controllers: ["NRC", "TerraPower", "Oklo", "X-energy"] },
 ];
+
+// ---------------------------------------------------------------------------
+// Product Strategy — from landscape analysis
+// ---------------------------------------------------------------------------
+
+const STRATEGY = {
+  opportunity: {
+    title: "The White Space",
+    text: "~97 GW of new data center capacity must be energized by 2030. Hyperscalers (MSFT, AMZN, GOOG, META) have in-house power teams and sign GW-scale deals directly. But the next ~500 colocation operators, AI startups, and enterprise DC owners — each building 10–500 MW — lack the expertise, supplier relationships, and negotiating power to navigate a fragmented, supply-constrained power market where interconnection takes >4 years and turbine slots are sold out to 2028. Nobody is solving the full procurement + orchestration + optimization problem for this mid-market tier.",
+  },
+
+  product: {
+    name: "PowerPath",
+    tagline: "Energization intelligence and procurement platform for data centers",
+    oneLiner: "We compress time-to-power for data center operators by combining an AI-driven energization planning engine with pre-negotiated supply access and real-time asset orchestration.",
+    layers: [
+      { name: "PowerPath Scout", phase: "P1 — Now",
+        what: "Energization planning & procurement advisory platform (SaaS + services)",
+        detail: "Ingests a site's location, load profile, timeline, and budget. Runs constraint-aware optimization across the full technology stack (fuel cells, engines, aero turbines, solar+storage, grid queue position) and outputs a ranked energization plan with specific supplier recommendations, $/MWh projections, permitting risk scores, and time-to-power estimates. Includes a curated supplier marketplace with pre-negotiated framework agreements.",
+        revenue: "Platform SaaS ($5K–25K/mo per site) + procurement success fee (1–3% of equipment/PPA value)",
+        icon: "🔍" },
+      { name: "PowerPath Control", phase: "P2 — +12 mo",
+        what: "Hybrid asset orchestration & energy management system (EMS)",
+        detail: "Real-time software layer that sits across multiple BTM generation assets (fuel cells, engines, BESS, solar, grid connection) and optimizes dispatch, fuel purchasing, maintenance scheduling, and grid-services revenue. Solves the problem that a 50 MW campus with Bloom fuel cells + INNIO engines + Tesla BESS + grid backup needs a unified control plane — today they're managed in silos.",
+        revenue: "SaaS ($8–40K/mo per site) + performance fee (share of energy cost savings / grid-services revenue)",
+        icon: "⚡" },
+      { name: "PowerPath Capital", phase: "P3 — +24 mo",
+        what: "Energization-as-a-service (EaaS) — own/finance the assets",
+        detail: "Graduate from software to owning the BTM generation assets and selling power under long-term power agreements ($/MWh, take-or-pay). Use the Scout data to identify the best sites, the Control software to operate efficiently, and infrastructure capital (Blackstone, Brookfield, KKR-type) to fund. Essentially become a data-center-focused IPP with a software edge.",
+        revenue: "Power agreement ($/MWh × contracted MW × utilization) + equipment margin",
+        icon: "🏗️" },
+    ],
+  },
+
+  firstProduct: {
+    name: "PowerPath Scout",
+    why: [
+      "Lowest capital requirement — software + advisory, not hardware",
+      "Fastest to market — can launch with a small team of power engineers + a web platform",
+      "Builds the proprietary dataset (site plans, supplier pricing, lead times, permitting data) that becomes the moat for P2 and P3",
+      "Every engagement is a lead-gen funnel for P2 (sell them the EMS) and P3 (finance their assets)",
+      "Directly addresses the #1 pain point: 'I have capital and a site but I can't figure out how to get power in <18 months'",
+    ],
+    mvp: [
+      "Energization planning engine: input site location + MW + timeline → output ranked technology mix, supplier shortlist, $/MWh range, permitting path, time-to-power estimate",
+      "Supplier database with real-time slot availability (start with Bloom, INNIO, Caterpillar, Mainspring, VoltaGrid — the Tier 1-2 stack)",
+      "Interconnection queue tracker (PJM, ERCOT, MISO, SPP) with estimated wait times per utility/substation",
+      "Deal benchmarking: anonymized pricing and terms from the 17+ tracked deals in our dataset, so customers know what 'fair' looks like",
+      "Advisory layer: 3–5 senior power engineers who run the platform with the customer and negotiate on their behalf",
+    ],
+    timeline: "MVP in 4 months → first paying customer in 6 months → 10 customers by month 12",
+  },
+
+  icp: {
+    title: "Ideal Customer Profile (ICP)",
+    primary: {
+      segment: "Mid-market colocation & AI-native data center operators",
+      size: "Building or expanding 10–500 MW of capacity",
+      pain: "Need power in <18 months; don't have an in-house power procurement team; can't get hyperscaler-level supplier access or pricing",
+      budget: "Willing to pay $60K–300K/yr for platform + advisory that saves 6–18 months of time-to-power and 10–25% on $/MWh",
+      examples: [
+        { name: "CoreWeave", why: "AI GPU cloud; scaling fast; already using Bloom fuel cells; needs orchestration across multiple generation sources as they grow beyond 1 GW" },
+        { name: "Nebius (Yandex spin-off)", why: "European AI infra; just signed $2.6B Bloom deal; likely needs help planning next sites" },
+        { name: "Lambda Labs / Together AI / Cerebras Cloud", why: "AI-native GPU providers; fundraising at scale; need 50–200 MW fast; zero power expertise in-house" },
+        { name: "Vantage / QTS / Cyrus One / DataBank / Stack / Prime", why: "Second-tier colo operators building 50–200 MW expansions; strong DC ops teams but thin on power procurement" },
+        { name: "Compass / EdgeConneX / Yondr", why: "Global colo operators entering new markets (Middle East, APAC) where power landscape is unfamiliar" },
+      ],
+    },
+    secondary: {
+      segment: "Infrastructure capital deployers",
+      size: "Deploying $500M+ into DC + power infrastructure",
+      pain: "Need independent technical diligence on energization plans, technology selection, and supplier risk before committing capital",
+      budget: "$100K–500K per engagement for diligence + ongoing portfolio monitoring",
+      examples: [
+        { name: "Blackstone / Brookfield / KKR / GIP", why: "Deploying billions into DC infra; need independent power engineering expertise to underwrite deals" },
+        { name: "Sovereign wealth funds (ADIA, PIF, Mubadala)", why: "Building GW-scale DC campuses in Middle East; need turnkey energization planning" },
+      ],
+    },
+  },
+
+  sellTo: {
+    title: "Specific first 10 targets — who we'd sell to, and why now",
+    targets: [
+      { name: "CoreWeave", title: "VP Infrastructure / Head of Energy", hook: "You're at ~850 MW with Bloom and scaling fast. As you diversify beyond fuel cells into engines + grid + storage, you need a unified planning and dispatch layer. We build that.", mw: "1,000+", urgency: "Now" },
+      { name: "Lambda Labs", title: "CEO / VP Ops", hook: "You just raised $1.5B+ and need 100+ MW of GPU capacity online in 12 months. Your team builds AI, not power plants. We plan and procure your energization end-to-end.", mw: "100–200", urgency: "Now" },
+      { name: "Vantage Data Centers", title: "SVP Development / VP Energy", hook: "You're expanding into 5 new markets globally. Each has a different power landscape, supplier set, and permitting regime. Our platform gives you a consistent energization playbook and pre-negotiated supplier access everywhere.", mw: "200–500", urgency: "Now" },
+      { name: "DataBank (Digital Bridge)", title: "VP Engineering", hook: "You're building 200+ MW in Texas and Virginia. Grid queues are 4+ years in NoVA and ERCOT is complex. We cut your time-to-power by 12+ months with hybrid BTM+grid planning.", mw: "200+", urgency: "Q3 2026" },
+      { name: "Together AI", title: "COO / Head of Infra", hook: "Inference is about to overtake training as the load driver. You need 50–100 MW fast, with flexible ramp. We design a multi-source energization plan that matches your variable AI load shape.", mw: "50–100", urgency: "Now" },
+      { name: "Compass Datacenters", title: "SVP Power & Energy", hook: "You're going global — entering Middle East and APAC. We've mapped the supplier landscape in every target region and can compress your site selection and energization timeline.", mw: "300+", urgency: "Q3 2026" },
+      { name: "Yondr Group", title: "Head of Energy", hook: "You build hyperscale for others. Your clients demand energization commitments in the lease. We give you a platform to model, procure, and guarantee power delivery timelines.", mw: "100–500", urgency: "Now" },
+      { name: "Blackstone Infrastructure", title: "Managing Director, Digital Infra", hook: "You've invested $1B+ in VoltaGrid and are deploying billions more in DC. We provide independent energization diligence and ongoing portfolio power optimization across your DC holdings.", mw: "Portfolio", urgency: "Now" },
+      { name: "EdgeConneX", title: "VP Energy Procurement", hook: "You operate in 50+ markets globally. Our interconnection queue tracker and supplier marketplace give your lean energy team 10x leverage across all sites.", mw: "100–300", urgency: "Q4 2026" },
+      { name: "PIF / NEOM (Saudi)", title: "Program Director, Digital Infra", hook: "You're building GW-scale AI infrastructure in a market with no DC power precedent. We bring US/EU best practices, pre-negotiated supplier access (VoltaGrid, Bloom, INNIO), and a turnkey energization plan.", mw: "500–2,000", urgency: "Now" },
+    ],
+  },
+
+  roadmap: [
+    { phase: "P0 — Validate (Month 1–3)", color: "#38e1b0",
+      items: [
+        "Conduct 20 discovery calls with mid-market colo/AI operators (target list above)",
+        "Validate willingness-to-pay for energization planning + procurement",
+        "Sign 2–3 design partners (free/discounted Scout access in exchange for feedback + case studies)",
+        "Build v0.1 of the energization planning engine (spreadsheet-grade, human-in-the-loop)",
+        "Secure framework agreements with 3–5 Tier 1-2 suppliers (Bloom, INNIO, Mainspring, Caterpillar)",
+      ] },
+    { phase: "P1 — Scout Launch (Month 4–9)", color: "#5b8cff",
+      items: [
+        "Ship PowerPath Scout web platform (planning engine + supplier marketplace + queue tracker)",
+        "Hire 3–5 senior power engineers (ex-utility, ex-Bechtel/B&McD, ex-hyperscaler energy teams)",
+        "Close first 5 paying customers at $10K–25K/mo + procurement success fee",
+        "Build proprietary dataset: pricing benchmarks, slot availability, permitting timelines",
+        "Target ARR: $1.5M by month 12",
+      ] },
+    { phase: "P2 — Control (Month 12–24)", color: "#ffb454",
+      items: [
+        "Ship PowerPath Control — hybrid asset EMS for multi-source BTM sites",
+        "Integrate with Bloom ServerFarm, INNIO myPlant, Tesla Autobidder, utility SCADA",
+        "Upsell Control to existing Scout customers who are now operating BTM assets",
+        "Add grid-services optimization (demand response, frequency regulation revenue)",
+        "Target ARR: $8M by month 24",
+      ] },
+    { phase: "P3 — Capital (Month 24–36)", color: "#ff6b6b",
+      items: [
+        "Raise infrastructure fund or partner with Blackstone/Brookfield/KKR",
+        "Own and operate BTM assets at customer sites under power agreements",
+        "Use Scout data for site selection, Control software for operations",
+        "Target: 500 MW under management, $50M+ revenue run-rate",
+        "Become a software-differentiated, data-center-focused IPP",
+      ] },
+  ],
+
+  competitiveEdge: {
+    title: "Why us vs. alternatives",
+    comparisons: [
+      { alternative: "Big-4 / McKinsey energy advisory", edge: "They charge $2M for a 6-month study. We deliver a live platform with real-time supplier data, continuously updated — 10x faster, 5x cheaper, and we actually procure, not just advise." },
+      { alternative: "Bloom / VoltaGrid (single-vendor)", edge: "They sell their own equipment. We're vendor-neutral and optimize across the full technology stack. The customer gets the best $/MWh and fastest time-to-power, not what one vendor has in stock." },
+      { alternative: "In-house power team", edge: "Only hyperscalers can afford a 20-person power procurement team. We provide that capability as a service for $200K/yr instead of $4M/yr in fully-loaded headcount." },
+      { alternative: "Traditional EPC firms", edge: "Bechtel and Burns & McDonnell build what you tell them. We figure out what to build, from whom, and in what sequence — then hand off to the EPC. We're upstream in the decision chain." },
+      { alternative: "Utility account managers", edge: "Utilities want you on the grid (4+ year wait). We show you the full option set including BTM, co-location, and hybrid — many of which bypass the utility entirely." },
+    ],
+  },
+
+  tam: {
+    title: "Market sizing",
+    rows: [
+      { label: "New DC capacity to 2030", value: "~97 GW", note: "~$300B+ in power infrastructure spend" },
+      { label: "Mid-market share (non-hyperscaler)", value: "~30–40%", note: "~30–40 GW = ~500 operators" },
+      { label: "Addressable spend on energization services", value: "~$5–10B", note: "Planning + procurement + EMS + power agreements" },
+      { label: "Scout TAM (advisory + platform)", value: "~$500M–1B/yr", note: "500 operators × $1–2M/yr avg" },
+      { label: "Control TAM (EMS software)", value: "~$1–2B/yr", note: "Per-site SaaS on 30+ GW of BTM assets" },
+      { label: "Capital TAM (own assets)", value: "~$10–30B+", note: "Own 1–5 GW of BTM generation" },
+    ],
+  },
+};
