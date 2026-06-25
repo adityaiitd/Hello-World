@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="US Car Subscription Economics Simulator & Strategy Tool" />
+  <title>US Car Subscription Economics Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="car-subscription.js" defer></script>
+  <style>
+    /* Additional custom styling to make the simulator look absolutely world-class */
+    .sim-container {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 24px;
+      margin-top: 16px;
+    }
+    @media (max-width: 1024px) {
+      .sim-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    .slider-group {
+      background: linear-gradient(180deg, var(--card) 0%, var(--bg-2) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .slider-item {
+      margin-bottom: 16px;
+    }
+    .slider-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: .85rem;
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+    .slider-label-row span.val {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .slider-input {
+      width: 100%;
+      height: 6px;
+      background: var(--line);
+      border-radius: 3px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .slider-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(56,225,176,.5);
+      transition: transform .1s;
+    }
+    .slider-input::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+    .toggle-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .toggle-btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--card-2);
+      color: var(--text);
+      font-weight: 600;
+      font-size: .82rem;
+      cursor: pointer;
+      transition: all .15s;
+      text-align: center;
+    }
+    .toggle-btn:hover {
+      border-color: var(--accent-2);
+    }
+    .toggle-btn.active {
+      background: var(--accent-2);
+      border-color: var(--accent-2);
+      color: #fff;
+    }
+    .output-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .metrics-header-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .metric-box {
+      background: linear-gradient(180deg, var(--card-2), var(--bg-2));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .metric-box .num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .metric-box .num.neg {
+      color: var(--crit);
+    }
+    .metric-box .label {
+      font-size: .75rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .metric-box .sub {
+      font-size: .65rem;
+      margin-top: 4px;
+      color: var(--accent-2);
+    }
+    .insights-card {
+      background: linear-gradient(180deg, var(--card) 0%, var(--bg-2) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .insights-card h3 {
+      margin-top: 0;
+      color: var(--text);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+      font-size: .95rem;
+    }
+    .insights-content {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .insights-content b {
+      color: var(--text);
+    }
+    .warning-box {
+      border-left: 4px solid var(--crit);
+      background: rgba(255, 107, 107, 0.08);
+      padding: 12px;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-size: .82rem;
+      color: #ff9494;
+    }
+    .success-box {
+      border-left: 4px solid var(--accent);
+      background: rgba(56, 225, 176, 0.08);
+      padding: 12px;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-size: .82rem;
+      color: #9effe1;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      transition: color .15s;
+    }
+    .back-link:hover {
+      color: var(--accent-2);
+    }
+    .sec-title {
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--accent-2);
+      margin-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+      padding-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🚗</span>
+      <div>
+        <h1>US Car Subscription Economics Simulator</h1>
+        <p class="subtitle">Validate Unit Economics · Explore New vs. Used Cars · Formulate Strategy</p>
+      </div>
+    </div>
+    <a href="index.html" class="back-link">← Back to Power Dashboard</a>
+  </header>
+
+  <main style="padding-top: 24px;">
+    <div style="margin-bottom: 18px;">
+      <h2 style="margin: 0 0 6px 0; font-size: 1.5rem; font-weight: 800;">Stress-Test Your Car Subscription Strategy</h2>
+      <p style="margin: 0; font-size: .88rem; color: var(--muted);">Adjust the operational levers below to observe the immediate impact on profit margins, asset utilization, breakeven thresholds, and risk factors in the US market.</p>
+    </div>
+
+    <!-- PRESET TOGGLES -->
+    <div class="toggle-bar">
+      <button id="presetNew" class="toggle-btn active">Case A: New SUV (Traditional Asset-Heavy)</button>
+      <button id="presetUsed" class="toggle-btn">Case B: Used SUV (Traditional Asset-Heavy)</button>
+      <button id="presetSaaS" class="toggle-btn">Case C: Used SUV (Dealer SaaS - Asset-Light)</button>
+    </div>
+
+    <div class="sim-container">
+      <!-- LEVERS (SLIDERS) -->
+      <div class="slider-group">
+        <h3 style="margin-top: 0; font-size: 1rem; color: var(--text);">Operational & Cost Levers</h3>
+        
+        <div class="sec-title">Asset & Sourcing</div>
+        
+        <!-- Car Value -->
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span>Vehicle Original Value (MSRP)</span>
+            <span id="lblCarValue" class="val">$42,500</span>
+          </div>
+          <input type="range" id="inputCarValue" class="slider-input" min="15000" max="100000" step="500" value="42500" />
+        </div>
+
+        <!-- Sourcing Discount -->
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span>OEM / Sourcing Discount (%)</span>
+            <span id="lblDiscount" class="val">20%</span>
+          </div>
+          <input type="range" id="inputDiscount" class="slider-input" min="0" max="35" step="1" value="20" />
+        </div>
+
+        <div class="sec-title">Subscription & Utilization</div>
+
+        <!-- Monthly Fee -->
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span>Monthly Subscription Fee</span>
+            <span id="lblSubFee" class="val">$899</span>
+          </div>
+          <input type="range" id="inputSubFee" class="slider-input" min="300" max="2500" step="10" value="899" />
+        </div>
+
+        <!-- Utilization Rate -->
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span>Fleet Utilization Rate (%)</span>
+            <span id="lblUtil" class="val">85%</span>
+          </div>
+          <input type="range" id="inputUtil" class="slider-input" min="50" max="100" step="1" value="85" />
+        </div>
+
+        <div class="sec-title">Running Costs (Annualized)</div>
+
+        <!-- Annual Depreciation -->
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span>Annual Asset Depreciation (%)</span>
+            <span id="lblDeprec" class="val">12.5%</span>
+          </div>
+          <input type="range" id="inputDeprec" class="slider-input" min="0" max="40" step="0.5" value="12.5" />
+        </div>
+
+        <!-- Financing Interest Rate -->
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span>Debt Financing Interest Rate (APR)</span>
+            <span id="lblInterest" class="val">8%</span>
+          </div>
+          <input type="range" id="inputInterest" class="slider-input" min="0" max="15" step="0.5" value="8" />
+        </div>
+
+        <!-- Fleet Insurance -->
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span>Monthly Commercial Insurance Premium</span>
+            <span id="lblInsurance" class="val">$225</span>
+          </div>
+          <input type="range" id="inputInsurance" class="slider-input" min="50" max="400" step="5" value="225" />
+        </div>
+
+        <!-- Maintenance & Repairs -->
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span>Annual Maintenance & Repair Costs</span>
+            <span id="lblMaint" class="val">$150</span>
+          </div>
+          <input type="range" id="inputMaint" class="slider-input" min="0" max="4000" step="50" value="150" />
+        </div>
+
+        <div class="sec-title">Operational Friction (Per Turn)</div>
+
+        <!-- Reconditioning Cost -->
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span>Reconditioning & Detailing (Per Turn)</span>
+            <span id="lblRecon" class="val">$200</span>
+          </div>
+          <input type="range" id="inputRecon" class="slider-input" min="50" max="3000" step="50" value="200" />
+        </div>
+
+        <!-- Two-way Logistics -->
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span>Two-Way Delivery & Pick-Up Logistics</span>
+            <span id="lblLogistics" class="val">$400</span>
+          </div>
+          <input type="range" id="inputLogistics" class="slider-input" min="100" max="1500" step="25" value="400" />
+        </div>
+
+        <!-- Customer Acquisition Cost -->
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span>Customer Acquisition Cost (CAC)</span>
+            <span id="lblCAC" class="val">$500</span>
+          </div>
+          <input type="range" id="inputCAC" class="slider-input" min="50" max="1500" step="25" value="500" />
+        </div>
+      </div>
+
+      <!-- VISUAL OUTPUTS -->
+      <div class="output-column">
+        <!-- KPIS -->
+        <div class="metrics-header-grid">
+          <div class="metric-box">
+            <div id="valNetContribution" class="num">-$132</div>
+            <div class="label">Net Annual Contribution</div>
+            <div id="subNetContribution" class="sub">-1.2% Margin</div>
+          </div>
+          <div class="metric-box">
+            <div id="valBreakevenUtil" class="num">86.1%</div>
+            <div class="label">Breakeven Utilization</div>
+            <div id="subBreakevenDays" class="sub">314 Days / Year</div>
+          </div>
+          <div class="metric-box">
+            <div id="valROA" class="num">-0.4%</div>
+            <div class="label">Asset Yield (ROA)</div>
+            <div id="subROA" class="sub">Leverage Buffer</div>
+          </div>
+        </div>
+
+        <!-- COST BREAKDOWN CHART -->
+        <div class="card chart-card" style="margin-bottom: 0;">
+          <h3 style="margin-bottom: 10px;">Annual Cost Composition vs. Subscription Revenue</h3>
+          <div class="chart-wrap" style="height: 250px;">
+            <canvas id="costBreakdownChart"></canvas>
+          </div>
+        </div>
+
+        <!-- STRATEGIC INSIGHTS AND VALIDATION -->
+        <div class="insights-card">
+          <h3>Strategic Review & Stress-Test Summary</h3>
+          <div class="insights-content">
+            <div id="scenariostate">
+              <!-- Content injected via JS -->
+            </div>
+            <p style="margin-bottom: 0; font-size: .82rem; border-top: 1px solid var(--line); padding-top: 10px; color: var(--muted);">
+              * Note: Economics modeled assume a 12-month vehicle rotation hold. In <b>Dealer SaaS Mode</b>, the platform holds zero vehicle assets, taking a 15% platform take-rate, rendering the model pure high-margin software with zero balance sheet depreciation or financing risk.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
